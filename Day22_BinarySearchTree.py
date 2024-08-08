@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -22,3 +25,16 @@ def getHeight(root):
     right_height = getHeight(root.right)
     return 1 + max(left_height, right_height)
 
+
+def bfs(root: Node):
+    if root is None:
+        return
+
+    queue = deque([root])
+    while queue:
+        current = queue.popleft()
+        print(current.data, end=' ')
+        if current.left:
+            queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
