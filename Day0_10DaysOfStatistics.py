@@ -1,4 +1,5 @@
 # Read the first line (number of elements, although we might not need to use it directly)
+import math
 from collections import Counter
 
 n = int(input())
@@ -19,7 +20,6 @@ if n % 2 == 1:  # Odd number of elements
 else:  # Even number of elements
     median = (numbers[(n // 2) - 1] + numbers[n // 2]) / 2
 
-
 # Count the frequency of each number
 frequency = Counter(numbers)
 
@@ -32,3 +32,29 @@ modes = [key for key, value in frequency.items() if value == max_freq]
 print(mean)
 print(median)
 print(modes[0])
+
+
+# Calculate the weighted mean
+def weightedMean(x, w):
+    # Element-wise multiplication
+    result = [a * b for a, b in zip(x, w)]
+    return round(sum(result) / sum(w), 1)
+
+
+# Day1: Standard Deviation
+def stdDev(arr):
+    # Print your answers to 1 decimal place within this function
+    sum = 0
+    for number in arr:
+        sum += number
+
+    mean = round(sum / len(arr), 1)
+    newArr = [math.pow(element - mean, 2) for element in arr]
+    sum = 0
+    for number in newArr:
+        sum += number
+
+    return round(math.sqrt(sum / len(newArr)), 1)
+
+
+stdDev([1, 2, 3, 4, 5])
