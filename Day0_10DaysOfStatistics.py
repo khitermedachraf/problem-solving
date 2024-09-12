@@ -57,4 +57,27 @@ def stdDev(arr):
     return round(math.sqrt(sum / len(newArr)), 1)
 
 
-stdDev([1, 2, 3, 4, 5])
+# Day1 find the Quartiles
+# Given an array, , of  integers, calculate the respective first quartile (), second quartile (), and third quartile (). It is guaranteed that , , and  are integers.
+def getMedian(arr):
+    # Sort the list in ascending order
+    n = len(arr)
+    # Step 3 & 4: Calculate the median
+    if n % 2 == 1:  # Odd number of elements
+        return arr[n // 2]
+    else:  # Even number of elements
+        return (arr[(n // 2) - 1] + arr[n // 2]) / 2
+
+
+def quartiles(arr):
+    # Write your code here
+    n = len(arr)
+    arr.sort()
+    q2 = getMedian(arr)
+    q1 = q3 = 0
+    if len(arr) % 2 == 1:  # Odd number of elements
+        q1 = getMedian(arr[0: n // 2])
+        q2 = getMedian(arr[n // 2 + 1:])
+    else:
+        q1 = getMedian(arr[0: n // 2])
+        q2 = getMedian(arr[n // 2:])
