@@ -77,7 +77,17 @@ def quartiles(arr):
     q1 = q3 = 0
     if len(arr) % 2 == 1:  # Odd number of elements
         q1 = getMedian(arr[0: n // 2])
-        q2 = getMedian(arr[n // 2 + 1:])
+        q3 = getMedian(arr[n // 2 + 1:])
     else:
         q1 = getMedian(arr[0: n // 2])
-        q2 = getMedian(arr[n // 2:])
+        q3 = getMedian(arr[n // 2:])
+    return [q1, q2, q3]
+
+
+# Day1: Find Interquartile Range
+def interQuartile(values, freqs):
+    # Define the values and their frequencies
+    s = [value for value, freq in zip(values, freqs) for _ in range(freq)]
+    s.sort()
+    [a, b, c] = quartiles(s)
+    return c - a
